@@ -2,11 +2,9 @@ import pandas as pd
 from datetime import datetime
 import conn_to_DB as con
 
-
-
-def readDataFromCSV():
+def readDataFromCSV(client):
     # path variable 
-    file_path = 'C:\\Users\\sujan\\Documents\\Duales Studium\\Theorie\\4.Semester\\Grundlagen der Datenbanken\\Projekt_TimeSeriesData\\covid_19_india.csv'
+    file_path = 'C:\\Users\\sujan\\Documents\\Duales Studium\\Theorie\\4.Semester\\Grundlagen der Datenbanken\\InfluxDB_Projekt\\Time_Series_Corona_Data\\covid_19_india.csv'
     # Read the data into csvReader 
     csvReader = pd.read_csv(file_path)
     # Set variables 
@@ -31,7 +29,7 @@ def readDataFromCSV():
             },
             "time": datetime[i],
             "fields":{
-                'Confirmed': confirmed[i]
+                'confirmed': confirmed[i]
             }
         }
   
@@ -43,7 +41,7 @@ def readDataFromCSV():
             },
             "time": datetime[i],
             "fields":{
-                'Deaths': deaths[i]
+                'deaths': deaths[i]
             }
         }
 
@@ -55,7 +53,7 @@ def readDataFromCSV():
             },
             "time": datetime[i],
             "fields":{
-                'Cured': cured[i]
+                'cured': cured[i]
             }
         }
 
@@ -63,5 +61,5 @@ def readDataFromCSV():
         json_payload.append(confirmed_json)
         json_payload.append(death_json)
         json_payload.append(cured_json)
-        client = con.setContoInflux()
+        # client = con.setContoInflux()
     _ = client.write_points(json_payload)
