@@ -6,7 +6,7 @@ The main function of the project is to read out data from the database with diff
 
 
 # Download InfluxDB:
-        - Click on this [link] (https://portal.influxdata.com/downloads/). 
+        - Click on this [link](https://portal.influxdata.com/downloads/). 
         - Go to Are you interested in InfluxDB 1.x? 
         - Select specific InfluxDB version and your platform 
 
