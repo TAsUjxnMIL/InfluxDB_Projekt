@@ -3,19 +3,29 @@ from datetime import datetime
 import conn_to_DB as con
 
 def readDataFromCSV(client):
+    """read data from csv
+        Data is read from .csv file, after this data is written on database
+
+    Args:
+        client  (InfluxDBClient object): client contains to connection to the db, queries are executed over this object
+
+    Return:
+        none 
+
+    Test:
+        *
+    """
     # path variable 
-    file_path = 'C:\\Users\\sujan\\Documents\\Duales Studium\\Theorie\\4.Semester\\Grundlagen der Datenbanken\\InfluxDB_Projekt\\Time_Series_Corona_Data\\covid_19_india.csv'
+    file_path = 'C:\\Users\\sujan\\Documents\\Duales Studium\\Theorie\\4.Semester\\Grundlagen der Datenbanken\\InfluxDB_Projekt\\Time_Series_Corona_Data\\owid-covid-data.csv'
     # Read the data into csvReader 
     csvReader = pd.read_csv(file_path)
     # Set variables 
-    date = csvReader.Date
-    time = csvReader.Time
-    datetime = date + " " + time  
-    tags = csvReader.Sno
-    state = csvReader["State/UnionTerritory"].str.replace(" ", "_", case=False) #tag should not contain blank spaces
-    confirmed = csvReader.Confirmed
-    cured = csvReader.Cured
-    deaths = csvReader.Deaths
+    date = csvReader.date
+    #tags = csvReader.iso_code
+    state = csvReader.location.str.replace(" ", "_", case=False) #tag should not contain blank spaces
+    vaccinated = csvReader.new_vaccinations
+    confirmed = csvReader.new_cases
+    deaths = csvReader.new_deaths
 
       
     #Setup Payload 
@@ -24,10 +34,9 @@ def readDataFromCSV(client):
         confirmed_json = {
             "measurement": "confirmed_cases",
             "tags":{
-                "SerialNumber": tags[i],
                 "location": state[i]
             },
-            "time": datetime[i],
+            "time": date[i],
             "fields":{
                 'confirmed': confirmed[i]
             }
@@ -36,30 +45,27 @@ def readDataFromCSV(client):
         death_json = {
             "measurement": "death_cases",
             "tags":{
-                "SerialNumber": tags[i],
                 "location": state[i]
             },
-            "time": datetime[i],
+            "time": date[i],
             "fields":{
                 'deaths': deaths[i]
             }
         }
 
-        cured_json = {
-            "measurement": "cured_cases",
+        vaccinated_json = {
+            "measurement": "vaccinated_person",
             "tags":{
-                "SerialNumber": tags[i],
                 "location": state[i]
             },
-            "time": datetime[i],
+            "time": date[i],
             "fields":{
-                'cured': cured[i]
+                'vaccinated': vaccinated[i]
             }
         }
 
 
         json_payload.append(confirmed_json)
         json_payload.append(death_json)
-        json_payload.append(cured_json)
-        # client = con.setContoInflux()
-    _ = client.write_points(json_payload)
+        json_payload.append(vaccinated_json)
+    _ = client.connection.write_points(json_payload)

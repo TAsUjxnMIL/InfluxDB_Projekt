@@ -1,0 +1,4 @@
+Select MAX("confirmed"::field), "location"::tag from confirmed_cases
+
+
+select top("cured", 10), "location"::tag from cured_cases
