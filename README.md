@@ -9,16 +9,26 @@ The main function of the project is to read out data from the database with diff
         - Click on this link <https://portal.influxdata.com/downloads/>
         - Go to Are you interested in InfluxDB 1.x? 
         - Select specific InfluxDB version and your platform 
-
-# Set up InfluxDB On Windows: 
-        - Copy the link after wget. It could look like this: https://dl.influxdata.com/influxdb/releases/influxdb-1.8.5_windows_amd64.zip
+        
+        Windows:
+        - Copy the link after wget.
+          (It could look like this: https://dl.influxdata.com/influxdb/releases/influxdb-1.8.5_windows_amd64.zip)
         - Paste this link in to the browser. 
         - Save the appeared Zip file 
         - Unzip this file to your prefered location
-        - File should contain:  
+
+        Ubuntu & Debian:
+        - Add shown instructions in terminal
+
+        Mac OS X:
+        - Add shown instructions in terminal
+
+
+# Set up InfluxDB On Windows: 
+        - Unzipped folder should contain:  
                                 - influx.exe        (for the CLI utility)
                                 - influxd.exe       (to start server)
-                                - influxdb.config   (to adapt settings)
+                                - influxdb.conf     (to adapt settings)
                                 - influx_inspect.exe
                                 - influx_stress.exe
                                 - influx_tsm.exe
@@ -28,12 +38,13 @@ The main function of the project is to read out data from the database with diff
                                 - data: path can be changed in dir = "your\\path\\data"
                                 - wal: path can be changed in wal-dir = "your\\path\\wal"
 
-# Start the server 
+## Start the server 
     - Navigate in a terminal to the location of the unzipped folder with the .exe and .config files
-    - Type in: ./influxd.exe 2> logfile.log (All logs are logged into logfile.log (optional)) 
-    - InfluxDB server is started
+    - Type in: ./influxd.exe 2> logfile.log (if no adaptions were made in influxdb.config)
+    - Type in: ./influxd.exe -config influxdb.conf 2> logfile.log (if adaptions were made in influxdb.conf)
+    - InfluxDB SERVER is started
 
-# Connect to CLI (optional)
+## Connect to CLI (optional)
     - Open another terminal (location: same as before)
     - Type in: ./influx.exe precision rfc3339 
     - Reason: Interaction with database through terminal
