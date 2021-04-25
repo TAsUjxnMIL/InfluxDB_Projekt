@@ -4,39 +4,31 @@ This database programming project is about the analysis of time series data. The
 The main function of the project is to read out data from the database with different queries. Afterwards the result is shown to the user in form of a plot or just a terminal output. 
 
 
+# Setting up on Windows 10: 
 
-# Download InfluxDB:
-        - Click on this link <https://portal.influxdata.com/downloads/>
-        - Go to Are you interested in InfluxDB 1.x? 
-        - Select specific InfluxDB version and your platform 
-        
-        Windows:
-        - Copy the link after wget.
-          (It could look like this: https://dl.influxdata.com/influxdb/releases/influxdb-1.8.5_windows_amd64.zip)
-        - Paste this link in to the browser. 
-        - Save the appeared Zip file 
-        - Unzip this file to your prefered location
+## Download InfluxDB:
+    - Click on this link <https://portal.influxdata.com/downloads/>
+    - Go to Are you interested in InfluxDB 1.x? 
+    - Select specific InfluxDB version and your platform 
+    - Copy the link after wget
+      (It could look like this: https://dl.influxdata.com/influxdb/releases/influxdb-1.8.5_windows_amd64.zip)
+    - Paste this link in to the browser. 
+    - Save the appeared Zip file 
+    - Unzip this file to your prefered location
 
-        Ubuntu & Debian:
-        - Add shown instructions in terminal
-
-        Mac OS X:
-        - Add shown instructions in terminal
-
-
-# Set up InfluxDB On Windows: 
-        - Unzipped folder should contain:  
-                                - influx.exe        (for the CLI utility)
-                                - influxd.exe       (to start server)
-                                - influxdb.conf     (to adapt settings)
-                                - influx_inspect.exe
-                                - influx_stress.exe
-                                - influx_tsm.exe
-        - Adapt settings in influxdb.config: location where data, metadata is saved can be changed (optional)
-                                - Open the config file
-                                - meta: path can be changed in dir = "your\\path\\meta"
-                                - data: path can be changed in dir = "your\\path\\data"
-                                - wal: path can be changed in wal-dir = "your\\path\\wal"
+## Settings InfluxDB: 
+    - Unzipped folder should contain:  
+                            - influx.exe        (for the CLI utility)
+                            - influxd.exe       (to start server)
+                            - influxdb.conf     (to adapt settings)
+                            - influx_inspect.exe
+                            - influx_stress.exe
+                            - influx_tsm.exe
+    - Adapt settings in influxdb.config: location where data, metadata is saved can be changed (optional)
+                            - Open the config file
+                            - meta: path can be changed in dir = "your\\path\\meta"
+                            - data: path can be changed in dir = "your\\path\\data"
+                            - wal: path can be changed in wal-dir = "your\\path\\wal"
 
 ## Start the server 
     - Navigate in a terminal to the location of the unzipped folder with the .exe and .config files
@@ -46,5 +38,17 @@ The main function of the project is to read out data from the database with diff
 
 ## Connect to CLI (optional)
     - Open another terminal (location: same as before)
-    - Type in: ./influx.exe precision rfc3339 
+    - Type in: ./influx.exe -precision rfc3339 
     - Reason: Interaction with database through terminal
+    
+
+# Setting up on Ubuntu/ Mac OS X:
+
+## Download InfluxDB:
+    - Analog to Windows download, but here you just enter the instructions given in your terminal
+
+## Start the server: 
+    - In terminal: sudo influxd 
+
+## Connect to CLI (optional)
+    - In terminal: sudo influx -precision rfc3339
