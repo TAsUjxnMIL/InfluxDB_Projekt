@@ -8,7 +8,7 @@ def get_top_flop(client, choice):
         
         Args:
             client (InfluxDBClient object): client contains to connection to the db, queries are executed over this object
-            choice (string): user can decide between top or flop cases
+            choice (string): user can decide between top/ flop cases
 
         Return:
             none

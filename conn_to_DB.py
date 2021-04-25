@@ -2,7 +2,7 @@ from influxdb import InfluxDBClient
 
 # def set_Con_to_Influx():
 #     """set con to influx
-#         set Connection to Influx database
+#         set connection to Influx database
         
 #         Args:
 #             none
@@ -49,8 +49,6 @@ class MyInfluxDBClient:
         client.get_list_database()
         client.switch_database('CoronaDB_World_test')
         return client
-
-
 
 
 

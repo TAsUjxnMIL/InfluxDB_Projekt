@@ -7,7 +7,7 @@ def readDataFromCSV(client):
         Data is read from .csv file, after this data is written on database
 
     Args:
-        client  (InfluxDBClient object): client contains to connection to the db, queries are executed over this object
+        client (InfluxDBClient object): client contains to connection to the db, queries are executed over this object
 
     Return:
         none 

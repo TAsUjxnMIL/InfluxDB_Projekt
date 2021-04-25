@@ -4,7 +4,7 @@
         Ensure that you start the InfluxDB server in a terminal 
     attributes:
         name: Sujan Kanapathipillai
-        date: 24.04.2021
+        date: 25.04.2021
         version: 0.0.1
 """
 import write_to_DB
