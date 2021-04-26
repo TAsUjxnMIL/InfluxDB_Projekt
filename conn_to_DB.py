@@ -22,6 +22,7 @@ class MyInfluxDBClient:
             Test:
                 * is user input correct?
                 * are the default values taken? 
+            TODO Do it more interactive --> DB name through user input...
         """
         #Setup database 
         try:

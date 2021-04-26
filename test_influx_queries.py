@@ -10,10 +10,10 @@ class Test_Influx_Queries(unittest.TestCase):
 
     client = MyInfluxDBClient()
 
-    # def test_KPIs(self):
-    #     actual_array = get_data_DB.get_KPIs(self.client)
-    #     expected_array = [1305127, 81492, 4474] 
-    #     self.assertEqual(actual_array, expected_array)
+    def test_KPIs(self):
+        actual_array = get_data_DB.get_KPIs(self.client)
+        expected_array = [1305127, 81492, 4474] 
+        self.assertEqual(actual_array, expected_array)
 
     def test_top(self):
         actual_df_top = get_data_DB.get_top_flop(self.client, "TOP")
@@ -40,10 +40,38 @@ class Test_Influx_Queries(unittest.TestCase):
                 'Spain'
             ]
         })
-        print(expected_df_top)
-        # expected_df_top = expected_df_top.astype({'Confirmed Cases': 'int32'}).dtypes
+        expected_df_top['Confirmed Cases'] = expected_df_top['Confirmed Cases'].astype("int32")
         pd_testing.assert_frame_equal(actual_df_top, expected_df_top)
         
+    def test_flop(self):
+        actual_df_flop = get_data_DB.get_top_flop(self.client, "BOTTOM")
+        expected_df_flop = pd.DataFrame({
+            'Date':[
+                '2020-02-19T00:00:00Z',
+                '2020-01-29T00:00:00Z',
+                '2020-03-05T00:00:00Z',
+                '2020-03-21T00:00:00Z',
+                '2020-03-26T00:00:00Z'
+            ],
+            'Confirmed Cases':[
+                2,
+                0,
+                0,
+                0,
+                0
+            ],
+            'State':[
+                'Iran',
+                'Germany',
+                'Hungary',
+                'Haiti',
+                'Guinea-Bissau'
+            ]
+        })
+        expected_df_flop['Confirmed Cases'] = expected_df_flop['Confirmed Cases'].astype("int32")
+        pd_testing.assert_frame_equal(actual_df_flop, expected_df_flop)
+
+
 
 if __name__ == '__main__':
     unittest.main()

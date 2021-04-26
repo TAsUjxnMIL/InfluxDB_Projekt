@@ -14,6 +14,8 @@ def readDataFromCSV(client):
 
     Test:
         *
+    
+    TODO Write only data from 2021 to database
     """
     # path variable 
     file_path = 'C:\\Users\\sujan\\Documents\\Duales Studium\\Theorie\\4.Semester\\Grundlagen der Datenbanken\\InfluxDB_Projekt\\Time_Series_Corona_Data\\owid-covid-data.csv'
