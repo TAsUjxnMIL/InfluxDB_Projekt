@@ -1,9 +1,10 @@
 from pandas import DataFrame
 from fbprophet import Prophet 
 from fbprophet.plot import plot
+import matplotlib.pyplot as plt
 
 
-def prophet_forecast(client):
+def prophet_forecast(client, country):
     """[summary]
 
     Args:
@@ -12,7 +13,7 @@ def prophet_forecast(client):
     # TODO Import the newly predicted data for the next year to the database 
     # TODO Plot the predicted data 
     """
-    results_vaccinated = client.connection.query("SELECT confirmed FROM confirmed_cases ORDER BY time DESC")
+    results_vaccinated = client.connection.query(f"SELECT confirmed FROM confirmed_cases WHERE location='{country}' ORDER BY time DESC")
     results_vaccinated = results_vaccinated.get_points()
     results_vaccinated = list(results_vaccinated)
     df_results_vaccinated = DataFrame(results_vaccinated)
@@ -25,9 +26,7 @@ def prophet_forecast(client):
     model = Prophet(yearly_seasonality=True, weekly_seasonality=True, daily_seasonality=True)
     model.fit(df_results_vaccinated)
     # Prediction for the next 365 days
-    future = model.make_future_dataframe(periods=365)
+    future = model.make_future_dataframe(periods=20)
     forecast = model.predict(future)
-
-    
-
-    
+    model.plot(forecast)
+    plt.show()
