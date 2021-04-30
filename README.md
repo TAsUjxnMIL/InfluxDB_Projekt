@@ -1,22 +1,35 @@
-# InfluxDB_Projekt
+# InfluxDB project: Data analysis with corona data
 
-This database programming project is about the analysis of time series data. The data which is chosen can be found [here](https://ourworldindata.org/coronavirus-source-data) under .csv. This project is written in Python 3.8.5 64-bit ('base': conda). The database which is used is the InfluxDB version: 1.8.4
-The main function of the project is to read out data from the database with different queries. Afterwards the result is shown to the user in form of a plot or just a terminal output. 
+![GitHub repo size](https://img.shields.io/github/repo-size/TAsUjxnMIL/InfluxDB-project:-Data-analysis-with-corona-data)
+
+This database programming project is about the analysis of time series data.
+The time series data which is used can be found [here](https://ourworldindata.org/coronavirus-source-data) under .csv.
+To run the code in the repository PLEASE use the data within Time_Series_Corona_Data!
+
+The project mainly deals with interacting with the `influx database`. Basic operations like write, read from the database are 
+used. After reading the data is shown to the user either as a terminal output or as a plot. 
+
+This project is written in `Python 3.8.5 64-bit ('base': conda)`. The database which is used is the `InfluxDB version: 1.8.4`
 
 
-# Setting up on Windows 10: 
+## Prerequisites 
 
-## Download InfluxDB:
-    - Click on this link <https://portal.influxdata.com/downloads/>
-    - Go to Are you interested in InfluxDB 1.x? 
-    - Select specific InfluxDB version and your platform 
-    - Copy the link after wget
-      (It could look like this: https://dl.influxdata.com/influxdb/releases/influxdb-1.8.5_windows_amd64.zip)
-    - Paste this link in to the browser. 
-    - Save the appeared Zip file 
-    - Unzip this file to your prefered location
+Before cloning this whole project please make sure, you have done the following points:
+* Install InfluxDB on your computer
+* All the packages needed are installed
+  --> Within your python terminal, please enter: `pip install -r packages.txt`
 
-## Settings InfluxDB: 
+## Download InfluxDB Windows 10
+* Click on this link <https://portal.influxdata.com/downloads/>
+* Go to `Are you interested in InfluxDB 1.x?` 
+* Select specific InfluxDB version and your platform 
+* Copy the link after wget
+  (It could look like this: https://dl.influxdata.com/influxdb/releases/influxdb-1.8.5_windows_amd64.zip)
+* Paste this link in to the browser. 
+* Save the appeared Zip file 
+* Unzip this file to your prefered location
+
+### Settings InfluxDB: 
     - Unzipped folder should contain:  
                             - influx.exe        (for the CLI utility)
                             - influxd.exe       (to start server)
