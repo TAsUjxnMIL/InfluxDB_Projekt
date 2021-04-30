@@ -16,10 +16,10 @@ This project is written in `Python 3.8.5 64-bit ('base': conda)`. The database w
 2. [Download InfluxDB on Windows 10](#Download-InfluxDB-Windows-10)
     * [Setting_InfluxDB](#Settings-InfluxDB)
     * [Start_Server](#Start-the-server)
-    * [Connect_CLI_Win](#Connect-to-CLI-Win-(optional))
+    * [Connect_CLI_Win](#Connect-to-CLI-Win-optional)
 3. [Download InfluxDB on Ubuntu/ Mac OS X](#Download-InfluxDB-on-Ubuntu/-Mac-OS-X)
     * [Start_Server](#Start-the-server)
-    * [Connect_CLI](#Connect-to-CLI-(optional))
+    * [Connect_CLI](#Connect-to-CLI-optional)
 
 
 
@@ -63,7 +63,7 @@ Before cloning this whole project please make sure, you have done the following 
 * Type in: `./influxd.exe -config influxdb.conf 2> logfile.log` (if adaptions were made in influxdb.conf)
 * InfluxDB SERVER is started
 
-### Connect to CLI Win (optional)
+### Connect to CLI Win optional
 * Open another terminal (location: same as before)
 * Type in: ./influx.exe -precision rfc3339 
 * Reason: Interaction with database through terminal
@@ -79,5 +79,5 @@ Before cloning this whole project please make sure, you have done the following 
 * Navigate in a terminal to the location of the unzipped folder with the .exe and .conf files
 * In terminal: sudo influxd (Ubuntu)
 
-## Connect to CLI (optional)
+## Connect to CLI optional
 * In terminal: sudo influx -precision rfc3339 (Ubuntu)
