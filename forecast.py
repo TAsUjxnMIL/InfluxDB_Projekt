@@ -1,12 +1,22 @@
+"""Program start point 
+   * Main function where the data analysis is started
+   * User is able to choose between multiple functions which can be executed
+   
+   Attributes:
+        name: Sujan Kanapathipillai
+        date: 30.04.2021
+        version: 0.0.1 Beta - free
+         
+"""
 from pandas import DataFrame
 import pandas as pd
 from fbprophet import Prophet 
 from fbprophet.plot import plot
 import matplotlib.pyplot as plt
-from convert_DB_response import response_Conversion
+from ResponseConverterDF import ResponseConverterDF
 
 
-def prophet_forecast(client, country):
+def forecast(client, country):
     """Prophet forecast algorithm
         Prophet gets data that is written in results_vaccinted and calculates forcasted data for the next 50 days
 
@@ -22,20 +32,20 @@ def prophet_forecast(client, country):
         
     # TODO Import the newly predicted data for the next year to the database 
     """
+    converterDF = ResponseConverterDF()
     try:
-        df_results_vaccinated = response_Conversion(f"SELECT confirmed FROM confirmed_cases WHERE location='{country}' ORDER BY time DESC", client)
+        resultsConfirmedDF = converterDF.responseConversion(f"SELECT confirmed FROM confirmed_cases \
+                                WHERE location='{country}' ORDER BY time DESC", client)
         # Changing column names. Needed for prediction with fbprophet 
-        df_results_vaccinated.columns = ['ds', 'y']
-    except ValueError as val_error:
-        print("There is a mistake in the query, so no response. " + str(val_error))
+        resultsConfirmedDF.columns = ['ds', 'y']
+    except ValueError as valError:
+        print("There is a mistake in the query, so no response. " + str(valError))
         return
     # Changing the date format, needed for prediction with fbprophet 
-    df_results_vaccinated["ds"] = pd.to_datetime(df_results_vaccinated["ds"]).dt.date
-    # for i in range(0, len(df_results_vaccinated)):
-    #     df_results_vaccinated['ds'][i] =  df_results_vaccinated['ds'][i].replace("T00:00:00Z", "")
+    resultsConfirmedDF["ds"] = pd.to_datetime(resultsConfirmedDF["ds"]).dt.date
     # Instanciating Prophet object
     model = Prophet(yearly_seasonality=True, weekly_seasonality=True, daily_seasonality=True)
-    model.fit(df_results_vaccinated)
+    model.fit(resultsConfirmedDF)
     # Prediction for the next 365 days
     future = model.make_future_dataframe(periods=50)
     forecast = model.predict(future)
