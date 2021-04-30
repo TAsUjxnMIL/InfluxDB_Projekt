@@ -75,9 +75,9 @@ Before cloning this whole project please make sure, you have done the following 
 * Select specific InfluxDB version and your platform 
 * Enter the instructions given in your terminal
 
-## Start the server
+### Start the server
 * Navigate in a terminal to the location of the unzipped folder with the .exe and .conf files
 * In terminal: sudo influxd (Ubuntu)
 
-## Connect to CLI optional
+### Connect to CLI optional
 * In terminal: sudo influx -precision rfc3339 (Ubuntu)
