@@ -26,7 +26,7 @@ if __name__ == '__main__':
         print("Database is empty. Wait a few seconds data will be written on database in seconds!\n")
         _ = writeToDB(client)   
 
-    # Terminal menue
+    # Terminal menu
     while True:
         print("(a) - Top/Flop 10 countries with the highest number of cases")
         print("(b) - Compare Confirmed, Death, Vaccinated Cases in a plot")

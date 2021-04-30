@@ -1,7 +1,6 @@
-"""Program start point 
-   * Main function where the data analysis is started
-   * User is able to choose between multiple functions which can be executed
-   
+"""ResponseConverterList
+   * Child class of abstract class ResponseConverter
+  
    Attributes:
         name: Sujan Kanapathipillai
         date: 30.04.2021
@@ -18,21 +17,21 @@ class ResponseConverterList(ResponseConverter):
             * Response_Converter (ABC): Abstract class which the Response_Converter_df inherits from 
     """
 
-    def responseConversion(self, query_string, client):
+    def responseConversion(self, queryString, client):
         """response conversion
            * Respond of the database is an itereator, which cannot be subscripted
            * To get the actual values this function converts the respond into a list 
 
         Args:
             self (object reference):
-            query_string (string): The query of specific function is saved in here
+            queryString (string): The query of specific function is saved in here
             client (InfluxDBClient object): client contains to connection to the db, queries are executed over this object
 
         Returns:
             resultDB_list: Contains the results in a list 
         """
         try:
-            resultDB = client.connection.query(query_string)
+            resultDB = client.connection.query(queryString)
         except Exception as conError:
              print("Something went wrong: " + str(conError))
              return 

@@ -1,6 +1,7 @@
-"""Program start point 
-   * Main function where the data analysis is started
-   * User is able to choose between multiple functions which can be executed
+"""Get datasets from InfluxDb
+   * This file contains those functions that read datasets from the InfluxDB 
+   * These datasets are plotted afterwards
+   * Important: More than 80.000 entries are plotted, it could take a bit longer 
    
    Attributes:
         name: Sujan Kanapathipillai
@@ -15,8 +16,9 @@ import numpy as np
 from ResponseConverterDF import ResponseConverterDF
 
 def getTopFlop(client, choice):
-    """get top flop 
-        Get 10 countries with the highest/lowest number of vaccinated/deaths/confirmed cases
+    """Get top flop 
+            * Get 10 countries with the highest/lowest number of confirmed cases
+            TODO user should decide if he wants to see confirmed, vaccinated, death
         
         Args:
             client (InfluxDBClient object): client contains to connection to the db, queries are executed over this object
@@ -45,20 +47,20 @@ def getTopFlop(client, choice):
 
 
 def getAllData(client):
-    """get all data 
-        All confirmed/vaccinated/death cases are read out from the database, the data is compared and plotted
+    """Get all data 
+            * All confirmed/vaccinated/death cases are read out from the database, the data is compared and plotted
 
-    Args:
-        client (InfluxDBClient object): client contains to connection to the db, queries are executed over this object
+        Args:
+            client (InfluxDBClient object): client contains to connection to the db, queries are executed over this object
 
-    Return:
-        none
+        Return:
+            none
 
-    Test:
-        * do the plots appear?
-        * browser opened with treemap?
+        Test:
+            * do the plots appear?
+            * browser opened with treemaps?
 
-    TODO Maybe outsource the treemap
+        TODO Maybe outsource the treemap
     """
     converterDF = ResponseConverterDF()
     fig, ax = plt.subplots(3)
