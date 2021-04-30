@@ -11,6 +11,14 @@ used. After reading the data is shown to the user either as a terminal output or
 
 This project is written in `Python 3.8.5 64-bit ('base': conda)`. The database which is used is the `InfluxDB version: 1.8.4`
 
+## Table of Contents
+1. [General Info](#general-info)
+2. [Technologies](#technologies)
+3. [Installation](#installation)
+4. [Collaboration](#collaboration)
+5. [FAQs](#faqs)
+
+
 
 ## Prerequisites 
 
@@ -68,6 +76,3 @@ Before cloning this whole project please make sure, you have done the following 
 
 ## Connect to CLI (optional)
 * In terminal: sudo influx -precision rfc3339 (Ubuntu)
-
-## Possible Output 
-
