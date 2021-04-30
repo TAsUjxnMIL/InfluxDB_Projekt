@@ -1,20 +1,22 @@
-"""Start point InfluxDB program
-
-    tipp:
-        Ensure that you start the InfluxDB server in a terminal 
-    attributes:
+"""Program start point 
+   * Main function where the data analysis is started
+   * User is able to choose between multiple functions which can be executed
+   
+   Reminder:
+        * Ensure that you start the InfluxDB server in a terminal 
+   Attributes:
         name: Sujan Kanapathipillai
-        date: 25.04.2021
-        version: 0.0.1
+        date: 30.04.2021
+        version: 0.0.1 Beta - free
         
         TODO think of change the switch case into objectoriented 
 """
-import write_to_DB2
-import conn_to_DB
-import get_datasets
-import get_Key_Val
-from conn_to_DB import MyInfluxDBClient
-from forecast import prophet_forecast
+from DatabaseWriter import writeToDB
+from DatabaseConnector import MyInfluxDBClient
+from Unittests import UnittestClientQueries
+from KeyValues import KeyPerformanceIndicator
+import GetDatasets
+from Forecast import forecast
 import time
 
 if __name__ == '__main__':
@@ -22,33 +24,38 @@ if __name__ == '__main__':
     client = MyInfluxDBClient()
     if not client.connection.query("SELECT COUNT(*) FROM /.*/"):
         print("Database is empty. Wait a few seconds data will be written on database in seconds!\n")
-        write_to_DB2.write_To_DB(client)   
+        _ = writeToDB(client)   
+
+    # Terminal menue
     while True:
         print("(a) - Top/Flop 10 countries with the highest number of cases")
         print("(b) - Compare Confirmed, Death, Vaccinated Cases in a plot")
         print("(c) - Get Key Performance Indicators")
         print("(d) - Get a prediction how the incidents will develop in the next 100 days")
-        print("(X) - To exit press another button")
+        print("(X) - To run unittest and afterwards exit program press another button")
         choice = input("Enter your choice: ")
 
         if choice == 'a':
             print("Do you want the Top(1) or Flop(2) countries")
-            choice_countries = input("Enter the number: ")
-            if choice_countries == '1':
-                _ = get_datasets.get_top_flop(client, "TOP")
-            elif choice_countries == '2':
-                _ = get_datasets.get_top_flop(client, "BOTTOM")
+            choiceContry = input("Enter the number: ")
+            if choiceContry == '1':
+                _ = GetDatasets.getTopFlop(client, "TOP")
+            elif choiceContry == '2':
+                _ = GetDatasets.getTopFlop(client, "BOTTOM")
 
         elif choice == 'b':
-            get_datasets.get_all_data(client)
+            GetDatasets.getAllData(client)
 
         elif choice == 'c':
-            _ = get_Key_Val.get_KPIs(client)
+            kpiGetter = KeyPerformanceIndicator()
+            kpiGetter.getAllKPIs()
         
         elif choice == 'd':
             country = input("Enter the country from which you want the predicted data from:\n")
-            prophet_forecast(client, country)
+            forecast(client, country)
         else:
+            myUnittests = UnittestClientQueries()
+            myUnittests.run()
             exit()
         
 
