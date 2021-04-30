@@ -16,7 +16,7 @@ This project is written in `Python 3.8.5 64-bit ('base': conda)`. The database w
 2. [Download InfluxDB on Windows 10](#Download-InfluxDB-Windows-10)
     * [Setting_InfluxDB](#Settings-InfluxDB)
     * [Start_Server](#Start-the-server)
-    * [Connect_CLI](#Connect-to-CLI-Win-(optional))
+    * [Connect_CLI_Win](#Connect-to-CLI-Win-(optional))
 3. [Download InfluxDB on Ubuntu/ Mac OS X](#Download-InfluxDB-on-Ubuntu/-Mac-OS-X)
     * [Start_Server](#Start-the-server)
     * [Connect_CLI](#Connect-to-CLI-(optional))
