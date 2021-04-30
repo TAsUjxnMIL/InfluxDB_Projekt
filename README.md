@@ -17,7 +17,7 @@ This project is written in `Python 3.8.5 64-bit ('base': conda)`. The database w
     * [Setting_InfluxDB](#Settings-InfluxDB)
     * [Start_Server](#Start-the-server)
     * [Connect_CLI_Win](#Connect-to-CLI-Win-optional)
-3. [Download InfluxDB on Ubuntu/ Mac OS X](#Download-InfluxDB-on-Ubuntu/-Mac-OS-X)
+3. [Download InfluxDB on Ubuntu or Mac OS X](#Download-InfluxDB-on-Ubuntu-or-Mac-OS-X)
     * [Start_Server](#Start-the-server)
     * [Connect_CLI](#Connect-to-CLI-optional)
 
@@ -69,7 +69,7 @@ Before cloning this whole project please make sure, you have done the following 
 * Reason: Interaction with database through terminal
     
     
-## Download InfluxDB on Ubuntu/ Mac OS X
+## Download InfluxDB on Ubuntu or Mac OS X
 * Click on this link <https://portal.influxdata.com/downloads/>
 * Go to `Are you interested in InfluxDB 1.x?` 
 * Select specific InfluxDB version and your platform 
