@@ -30,38 +30,41 @@ Before cloning this whole project please make sure, you have done the following 
 * Unzip this file to your prefered location
 
 ### Settings InfluxDB: 
-    - Unzipped folder should contain:  
-                            - influx.exe        (for the CLI utility)
-                            - influxd.exe       (to start server)
-                            - influxdb.conf     (to adapt settings)
-                            - influx_inspect.exe
-                            - influx_stress.exe
-                            - influx_tsm.exe
-    - Adapt settings in influxdb.config: location where data, metadata is saved can be changed (optional)
-                            - Open the config file
-                            - meta: path can be changed in dir = "your\\path\\meta"
-                            - data: path can be changed in dir = "your\\path\\data"
-                            - wal: path can be changed in wal-dir = "your\\path\\wal"
+* Unzipped folder should contain:  
+    * influx.exe        (for the CLI utility)
+    * influxd.exe       (to start server)
+    * influxdb.conf     (to adapt settings)
+    * influx_inspect.exe
+    * influx_stress.exe
+    * influx_tsm.exe
+* Adapt settings in influxdb.config: location where data, metadata is saved can be changed (optional)
+    * Please create meta, data, wal folders within `influxdb-1.8.5_windows_amd64`
+    * Open influxdb.conf
+    * meta: path can be changed in dir = `"yourpath\\meta"` 
+    * data: path can be changed in dir = `"yourpath\\data"` 
+    * wal: path can be changed in wal-dir = `"yourpath\\wal"` 
 
-## Start the server 
-    - Navigate in a terminal to the location of the unzipped folder with the .exe and .config files
-    - Type in: ./influxd.exe 2> logfile.log (if no adaptions were made in influxdb.config)
-    - Type in: ./influxd.exe -config influxdb.conf 2> logfile.log (if adaptions were made in influxdb.conf)
-    - InfluxDB SERVER is started
+### Start the server 
+* Navigate in a terminal to the location of the unzipped folder with the .exe and .conf files
+* Type in: `./influxd.exe 2> logfile.log` (if no adaptions were made in influxdb.config)
+* Type in: `./influxd.exe -config influxdb.conf 2> logfile.log` (if adaptions were made in influxdb.conf)
+* InfluxDB SERVER is started
 
-## Connect to CLI (optional)
-    - Open another terminal (location: same as before)
-    - Type in: ./influx.exe -precision rfc3339 
-    - Reason: Interaction with database through terminal
+### Connect to CLI (optional)
+* Open another terminal (location: same as before)
+* Type in: ./influx.exe -precision rfc3339 
+* Reason: Interaction with database through terminal
     
-
-# Setting up on Ubuntu/ Mac OS X:
-
-## Download InfluxDB:
-    - Analog to Windows download, but here you just enter the instructions given in your terminal
+    
+## Download InfluxDB on Ubuntu/ Mac OS X:
+* Click on this link <https://portal.influxdata.com/downloads/>
+* Go to `Are you interested in InfluxDB 1.x?` 
+* Select specific InfluxDB version and your platform 
+* Enter the instructions given in your terminal
 
 ## Start the server: 
-    - In terminal: sudo influxd 
+* Navigate in a terminal to the location of the unzipped folder with the .exe and .conf files
+* In terminal: sudo influxd (Ubuntu)
 
 ## Connect to CLI (optional)
-    - In terminal: sudo influx -precision rfc3339
+* In terminal: sudo influx -precision rfc3339 (Ubuntu)
