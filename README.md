@@ -1,6 +1,6 @@
 # InfluxDB project: Data analysis with corona data
 
-![GitHub repo size](https://img.shields.io/github/repo-size/TAsUjxnMIL/InfluxDB-project:-Data-analysis-with-corona-data)
+![GitHub repo size](https://img.shields.io/github/repo-size/TAsUjxnMIL/InfluxDB_Projekt)
 
 This database programming project is about the analysis of time series data.
 The time series data which is used can be found [here](https://ourworldindata.org/coronavirus-source-data) under .csv.
@@ -68,3 +68,6 @@ Before cloning this whole project please make sure, you have done the following 
 
 ## Connect to CLI (optional)
 * In terminal: sudo influx -precision rfc3339 (Ubuntu)
+
+## Possible Output 
+
