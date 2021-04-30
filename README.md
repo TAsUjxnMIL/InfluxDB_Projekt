@@ -12,11 +12,16 @@ used. After reading the data is shown to the user either as a terminal output or
 This project is written in `Python 3.8.5 64-bit ('base': conda)`. The database which is used is the `InfluxDB version: 1.8.4`
 
 ## Table of Contents
-1. [General Info](#general-info)
-2. [Technologies](#technologies)
-3. [Installation](#installation)
-4. [Collaboration](#collaboration)
-5. [FAQs](#faqs)
+1. [Prerequisites](#Prerequisites)
+2. [Download InfluxDB on Windows 10](#Download-InfluxDB-Windows-10)
+    * [Setting_InfluxDB](#Settings InfluxDB)
+    * [Start_Server](#Start-the-server)
+    * [Connect_CLI](#Connect-to-CLI-(optional))
+3. [Download InfluxDB on Ubuntu/ Mac OS X](#Download-InfluxDB-on-Ubuntu/-Mac-OS-X)
+    * [Start_Server](#Start-the-server)
+    * [Connect_CLI](#Connect-to-CLI-(optional))
+
+
 
 
 
@@ -37,7 +42,7 @@ Before cloning this whole project please make sure, you have done the following 
 * Save the appeared Zip file 
 * Unzip this file to your prefered location
 
-### Settings InfluxDB: 
+### Settings InfluxDB
 * Unzipped folder should contain:  
     * influx.exe        (for the CLI utility)
     * influxd.exe       (to start server)
@@ -64,13 +69,13 @@ Before cloning this whole project please make sure, you have done the following 
 * Reason: Interaction with database through terminal
     
     
-## Download InfluxDB on Ubuntu/ Mac OS X:
+## Download InfluxDB on Ubuntu/ Mac OS X
 * Click on this link <https://portal.influxdata.com/downloads/>
 * Go to `Are you interested in InfluxDB 1.x?` 
 * Select specific InfluxDB version and your platform 
 * Enter the instructions given in your terminal
 
-## Start the server: 
+## Start the server
 * Navigate in a terminal to the location of the unzipped folder with the .exe and .conf files
 * In terminal: sudo influxd (Ubuntu)
 
