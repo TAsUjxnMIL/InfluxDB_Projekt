@@ -22,9 +22,6 @@ This project is written in `Python 3.8.5 64-bit ('base': conda)`. The database w
     * [Connect_CLI](#Connect-to-CLI-optional)
 
 
-
-
-
 ## Prerequisites 
 
 Before cloning this whole project please make sure, you have done the following points:

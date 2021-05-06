@@ -34,9 +34,9 @@ class UnittestClientQueries(unittest.TestCase):
                 * actualKPIs holds the real values from the database (kpi.Tester reads the data from influxDB)
         """
         kpiTester = KeyPerformanceIndicator()
-        kpiTester.getAllKPIs()
+        kpiTester.getAllKPIs(terminalOutput=False)
         actualKPIs = kpiTester.resultNumbers
-        expectedKPIs = [1305127, 81492, 4474] 
+        expectedKPIs = [1305127, 81492, 4474, 56.997, 300310] 
         self.assertEqual(actualKPIs, expectedKPIs)
         print("KPI Test passed successfully!")
 
@@ -47,7 +47,7 @@ class UnittestClientQueries(unittest.TestCase):
                 * expectedDFtop contains the values as a dataframe that should be read from the database
         """
         client = MyInfluxDBClient()
-        actualDFtop = GetDatasets.getTopFlop(client, "TOP")
+        actualDFtop = GetDatasets.getTopFlop(client, "TOP", terminalOutput=False)
         expectedDFtop = pd.DataFrame({
             'Date':[
                 '2021-04-22T22:00:00Z',
@@ -82,7 +82,7 @@ class UnittestClientQueries(unittest.TestCase):
                 * expectedDFflop contains the values as a dataframe that should be read from the database
         """
         client = MyInfluxDBClient()
-        actualDFflop = GetDatasets.getTopFlop(client, "BOTTOM")
+        actualDFflop = GetDatasets.getTopFlop(client, "BOTTOM",terminalOutput=False)
         expectedDFflop = pd.DataFrame({
             'Date':[
                 '2020-02-18T23:00:00Z',
@@ -150,8 +150,3 @@ class UnittestClientQueries(unittest.TestCase):
         self.testTop()
         self.testFlop()
         self.testConnection()
-        
-
-
-
-

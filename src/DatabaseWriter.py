@@ -25,7 +25,7 @@ def writeToDB(client):
     Return:
         len(dfCSV) (int): The number of entries in the database for the unittests
     """
-    filePath = 'Time_Series_Corona_Data/owid-covid-data.csv'
+    filePath = 'data/owid-covid-data.csv'
     dfCSV = pd.read_csv(filePath)
     # Change all occurences of nan to 0. Without rows are deleted automatically
     dfCSV.fillna(0, inplace=True)
@@ -52,3 +52,23 @@ def writeToDB(client):
 
     return len(dfCSV)
 
+def writeToDBForecast(client, forecast, country, resultsVaccinatedDF):
+    expectedMeasurement = []
+    trendMeasurement = []
+    weeklyMeasurement = []
+    timestamp = pd.to_datetime(forecast['ds'], unit='s')
+    timestamp = pd.to_datetime(resultsVaccinatedDF).dt.date
+    for i in range(0, len(timestamp)):
+        date = int(datetime.strptime(str(timestamp[i]), "%Y-%m-%d").timestamp())
+        expectedMeasurement.append(f"expected_vaccinations,location={country} ex_vaccinations={forecast['yhat'][i]} {date}")
+        trendMeasurement.append(f"trend_vaccinations,location={country} tr_vaccinations={forecast['trend'][i]} {date}")
+        weeklyMeasurement.append(f"weekly_vaccinations,location={country} we_vaccinations={forecast['weekly'][i]} {date}")
+
+    try:
+        _ = client.connection.write_points(expectedMeasurement, protocol='line',time_precision='s')
+        _ = client.connection.write_points(trendMeasurement, protocol='line',time_precision='s')
+        _ = client.connection.write_points(weeklyMeasurement, protocol='line', time_precision='s')  
+    except Exception as writeError:
+        print("There is a mistake in writing on the database: " + str(writeError))
+        return 
+    print("Predicted data is now on the database!")

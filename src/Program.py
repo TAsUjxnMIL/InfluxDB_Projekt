@@ -44,23 +44,18 @@ if __name__ == '__main__':
                 _ = GetDatasets.getTopFlop(client, "BOTTOM")
 
         elif choice == 'b':
-            GetDatasets.getAllData(client)
+            plotFlag = input("Do you want to see a common plot(1), treemap(2), both(random number): ")
+            GetDatasets.getAllData(client, int(plotFlag))
 
         elif choice == 'c':
             kpiGetter = KeyPerformanceIndicator()
             kpiGetter.getAllKPIs()
         
         elif choice == 'd':
-            country = input("Enter the country from which you want the predicted data from:\n")
+            country = input("Enter the country from which you want the predicted data from (See countryNames.txt):\n")
             forecast(client, country)
         else:
             myUnittests = UnittestClientQueries()
             myUnittests.run()
             exit()
-        
-
-
-
-
-
 

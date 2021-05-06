@@ -15,7 +15,7 @@ import pandas as pd
 import numpy as np
 from ResponseConverterDF import ResponseConverterDF
 
-def getTopFlop(client, choice):
+def getTopFlop(client, choice, terminalOutput=True):
     """Get top flop 
             * Get 10 countries with the highest/lowest number of confirmed cases
             TODO user should decide if he wants to see confirmed, vaccinated, death
@@ -42,55 +42,84 @@ def getTopFlop(client, choice):
     dfTopFlop = dfTopFlop.iloc[::-1]
     dfTopFlop = dfTopFlop.iloc[0:5, :]
     dfTopFlop = dfTopFlop.reset_index(drop=True)
-    print(dfTopFlop)
+    if terminalOutput:
+        print(dfTopFlop)
     return dfTopFlop 
 
-
-def getAllData(client):
+def getAllData(client, plotFlag):
+    
     """Get all data 
             * All confirmed/vaccinated/death cases are read out from the database, the data is compared and plotted
 
         Args:
             client (InfluxDBClient object): client contains to connection to the db, queries are executed over this object
+            plotFlag (int): Contains user choice, which overview shall be shown
 
         Return:
             none
-
-        Test:
-            * do the plots appear?
-            * browser opened with treemaps?
-
-        TODO Maybe outsource the treemap
     """
     converterDF = ResponseConverterDF()
-    fig, ax = plt.subplots(3)
-    
+
     resultConfirmed = converterDF.responseConversion("SELECT * FROM confirmed_cases", client)
     resultConfirmed.columns = ['Date', 'Confirmed Cases', 'State']
     resultConfirmed["Date"] = pd.to_datetime(resultConfirmed["Date"]).dt.date
-    ax[0].plot(resultConfirmed['Date'], resultConfirmed['Confirmed Cases'])
-    ax[0].title.set_text('Confirmed Cases')
-    
+
     resultDeath = converterDF.responseConversion("SELECT * FROM death_cases", client)
     resultDeath.columns = ['Date', 'Death Cases', 'State']
     resultDeath["Date"] = pd.to_datetime(resultDeath["Date"]).dt.date
-    ax[1].plot(resultDeath['Date'], resultDeath['Death Cases'])
-    ax[1].title.set_text('Death Cases')
-    
+
     resultVaccinated = converterDF.responseConversion("SELECT * FROM vaccinated_cases", client)
     resultVaccinated.columns = ['Date', 'State', 'Vaccinated Person']
     resultVaccinated["Date"] = pd.to_datetime(resultVaccinated["Date"]).dt.date
+
+    if plotFlag == 1:
+        plotBarChart(resultConfirmed, resultDeath, resultVaccinated)
+    elif plotFlag == 2:
+        showTreeMap(resultConfirmed, resultDeath, resultVaccinated)
+    else:
+        plotBarChart(resultConfirmed, resultDeath, resultVaccinated)
+        showTreeMap(resultConfirmed, resultDeath, resultVaccinated)
+        
+def plotBarChart(resultConfirmed, resultDeath, resultVaccinated):
+    """Plot Bar Chart
+            * Data from getAllData function is plotted here with matplotlib.pyplot
+
+    Args:
+        resultConfirmed (DataFrame): Confirmed cases during pandamic - data from database
+        resultDeath (DataFrame): Death cases during pandamic - data from database
+        resultVaccinated (DataFrame): Vaccinated cases during pandamic - data from database
+    
+    Return: 
+        none
+    """
+    fig, ax = plt.subplots(3)
+
+    ax[0].plot(resultConfirmed['Date'], resultConfirmed['Confirmed Cases'])
+    ax[0].title.set_text('Confirmed Cases')
+    
+    ax[1].plot(resultDeath['Date'], resultDeath['Death Cases'])
+    ax[1].title.set_text('Death Cases')
+    
     ax[2].plot(resultVaccinated['Date'], resultVaccinated['Vaccinated Person'])
     ax[2].title.set_text('Vaccinated Cases')
     fig.tight_layout()
     plt.show()
 
-    fig1 = px.treemap(resultVaccinated, path=['State'], values='Vaccinated Person', title='Cured Cases State Comparison')
-    fig1.show()
-    fig2 = px.treemap(resultDeath, path=['State'], values='Death Cases', title='Death Cases State Comparison')
-    fig2.show()
-    fig3 = px.treemap(resultConfirmed, path=['State'], values='Confirmed Cases', title='Vaccinated person State Comparison')
-    fig3.show()
+def showTreeMap(resultConfirmed, resultDeath, resultVaccinated):
+    """Show treemap
+            * Data from getAllData function is shown in a treemap within the browser (browser opens automatically)
 
+    Args:
+        resultConfirmed (DataFrame): Confirmed cases during pandamic - data from database
+        resultDeath (DataFrame): Death cases during pandamic - data from database
+        resultVaccinated (DataFrame): Vaccinated cases during pandamic - data from database
 
-    
+    Return: 
+        none
+    """
+    figVaccinated = px.treemap(resultVaccinated, path=['State'], values='Vaccinated Person', title='Cured Cases State Comparison')
+    figVaccinated.show()
+    figDeath = px.treemap(resultDeath, path=['State'], values='Death Cases', title='Death Cases State Comparison')
+    figDeath.show()
+    figConfirmed = px.treemap(resultConfirmed, path=['State'], values='Confirmed Cases', title='Vaccinated person State Comparison')
+    figConfirmed.show()

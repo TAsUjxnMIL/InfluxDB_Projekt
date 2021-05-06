@@ -10,10 +10,12 @@
 """
 from pandas import DataFrame
 import pandas as pd
+from datetime import datetime
 from fbprophet import Prophet 
 from fbprophet.plot import plot
 import matplotlib.pyplot as plt
 from ResponseConverterDF import ResponseConverterDF
+from DatabaseWriter import writeToDBForecast
 
 
 def forecast(client, country):
@@ -28,10 +30,10 @@ def forecast(client, country):
         Return:
             none
     
-        Test:
-            * Is the user input correct?
-        
-    TODO Import the newly predicted data for the next year to the database 
+        datetime:
+            * Is the user input correct? 
+        TODO Ask user if he wants to write the data on database
+        TODO Delete country in query 
     """
     converterDF = ResponseConverterDF()
     try:
@@ -49,3 +51,8 @@ def forecast(client, country):
     forecast = model.predict(future)
     model.plot(forecast)
     plt.show()
+
+    writeToDBForecast(client, forecast, country, resultsVaccinatedDF["ds"])
+
+   
+
