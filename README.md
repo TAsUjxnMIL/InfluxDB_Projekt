@@ -7,7 +7,7 @@ The time series data which is used can be found [here](https://ourworldindata.or
 To run the code in the repository PLEASE use the data within Time_Series_Corona_Data!
 
 The project mainly deals with interacting with the `influx database`. Basic operations like write, read from the database are 
-used. After reading the data is shown to the user either as a terminal output or as a plot. 
+used. After reading, the data is shown to the user either as a terminal output or as a plot. 
 
 This project is written in `Python 3.8.5 64-bit ('base': conda)`. The database which is used is the `InfluxDB version: 1.8.4`
 
@@ -15,11 +15,12 @@ This project is written in `Python 3.8.5 64-bit ('base': conda)`. The database w
 1. [Prerequisites](#Prerequisites)
 2. [Download InfluxDB on Windows 10](#Download-InfluxDB-Windows-10)
     * [Setting_InfluxDB](#Settings-InfluxDB)
-    * [Start_Server](#Start-the-server)
-    * [Connect_CLI_Win](#Connect-to-CLI-Win-optional)
+    * [Start_Server](#Start-the-server-(Windows-10))
+    * [Connect_CLI](#Connect-to-CLI-Win-optional)
 3. [Download InfluxDB on Ubuntu or Mac OS X](#Download-InfluxDB-on-Ubuntu-or-Mac-OS-X)
-    * [Start_Server](#Start-the-server)
+    * [Start_Server](#Start-the-server-(Ubuntu-or-Mac))
     * [Connect_CLI](#Connect-to-CLI-optional)
+4. [How to run the project](#How-to-run-the-project-?)
 
 
 ## Prerequisites 
@@ -27,7 +28,7 @@ This project is written in `Python 3.8.5 64-bit ('base': conda)`. The database w
 Before cloning this whole project please make sure, you have done the following points:
 * Install InfluxDB on your computer
 * All the packages needed are installed
-  --> Within your python terminal, please enter: `pip install -r packages.txt`
+  --> Within your python terminal, please enter: `pip install -r requirements.txt`
 
 ## Download InfluxDB Windows 10
 * Click on this link <https://portal.influxdata.com/downloads/>
@@ -41,21 +42,19 @@ Before cloning this whole project please make sure, you have done the following 
 
 ### Settings InfluxDB
 * Unzipped folder should contain:  
-    * influx.exe        (for the CLI utility)
-    * influxd.exe       (to start server)
-    * influxdb.conf     (to adapt settings)
-    * influx_inspect.exe
-    * influx_stress.exe
-    * influx_tsm.exe
-* Adapt settings in influxdb.config: location where data, metadata is saved can be changed (optional)
-    * Please create meta, data, wal folders within `influxdb-1.8.5_windows_amd64`
+    * influx.exe (for the CLI utility)
+    * influxd.exe (to start server)
+    * influxdb.conf (to adapt settings)
+* Adapt settings in influxdb.config: OPTIONAL \
+(Location where data, metadata,... is saved, can be changed 
+    * Please create meta, data, wal folders within the folder: `influxdb-1.8.5_windows_amd64`
     * Open influxdb.conf
-    * meta: path can be changed in dir = `"yourpath\\meta"` 
-    * data: path can be changed in dir = `"yourpath\\data"` 
-    * wal: path can be changed in wal-dir = `"yourpath\\wal"` 
+    * meta: path can be changed in `dir =` `"yourpath\\meta"`
+    * data: path can be changed in `dir =` `"yourpath\\data"` 
+    * wal: path can be changed in `wal-dir =` `"yourpath\\wal"` 
 
-### Start the server (Win)
-* Navigate in a terminal to the location of the unzipped folder with the .exe and .conf files
+### Start the server (Windows 10)
+* Navigate in a terminal (Powershell!) to the location of the unzipped folder with the .exe and .conf files
 * Type in: `./influxd.exe 2> logfile.log` (if no adaptions were made in influxdb.config)
 * Type in: `./influxd.exe -config influxdb.conf 2> logfile.log` (if adaptions were made in influxdb.conf)
 * InfluxDB SERVER is started
@@ -72,9 +71,16 @@ Before cloning this whole project please make sure, you have done the following 
 * Select specific InfluxDB version and your platform 
 * Enter the instructions given in your terminal
 
-### Start the server
+### Start the server (Ubuntu or Mac)
 * Navigate in a terminal to the location of the unzipped folder with the .exe and .conf files
 * In terminal: sudo influxd (Ubuntu)
 
 ### Connect to CLI optional
 * In terminal: sudo influx -precision rfc3339 (Ubuntu)
+
+
+## How to run the project ?
+* Clone the whole InfluxDB_Projekt repository 
+* On your machine navigate into the `InfluxDB_Projekt` folder
+* Type in `python Program.py` in the terminal \
+(Important: program has to be started from within the InfluxDB_Projekt folder)
