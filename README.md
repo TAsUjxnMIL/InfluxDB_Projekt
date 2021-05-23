@@ -20,7 +20,7 @@ This project is written in `Python 3.8.5 64-bit ('base': conda)`. The database w
 3. [Download InfluxDB on Ubuntu or Mac OS X](#3.-Download-InfluxDB-on-Ubuntu-or-Mac-OS-X)
     * [Start_Server](#3.1-Start-the-server-(Ubuntu-or-Mac))
     * [Connect_CLI](#3.2-Connect-to-CLI-optional)
-4. [How to run the project ?](#4.-How-to-run-the-project-?)
+4. [How to run the project](#4.-How-to-run-the-project-?)
 
 
 ## 1. Prerequisites 
