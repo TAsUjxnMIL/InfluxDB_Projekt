@@ -117,9 +117,9 @@ def showTreeMap(resultConfirmed, resultDeath, resultVaccinated):
     Return: 
         none
     """
-    figVaccinated = px.treemap(resultVaccinated, path=['State'], values='Vaccinated Person', title='Cured Cases State Comparison')
+    figVaccinated = px.treemap(resultVaccinated, path=['State'], values='Vaccinated Person', title='Vaccinated Cases State Comparison')
     figVaccinated.show()
     figDeath = px.treemap(resultDeath, path=['State'], values='Death Cases', title='Death Cases State Comparison')
     figDeath.show()
-    figConfirmed = px.treemap(resultConfirmed, path=['State'], values='Confirmed Cases', title='Vaccinated person State Comparison')
+    figConfirmed = px.treemap(resultConfirmed, path=['State'], values='Confirmed Cases', title='Confirmed person State Comparison')
     figConfirmed.show()
