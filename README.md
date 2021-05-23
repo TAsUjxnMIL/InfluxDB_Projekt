@@ -20,7 +20,7 @@ This project is written in `Python 3.8.5 64-bit ('base': conda)`. The database w
 3. [Download InfluxDB on Ubuntu or Mac OS X](#3.-Download-InfluxDB-on-Ubuntu-or-Mac-OS-X)
     * [Start_Server](#3.1-Start-the-server-(Ubuntu-or-Mac))
     * [Connect_CLI](#3.2-Connect-to-CLI-optional)
-4. [How to run the project](#4.-How-to-run-the-project-?)
+4. [How to run the project](#4.-How-to-run-the-project)
 
 
 ## 1. Prerequisites 
@@ -79,7 +79,7 @@ Before cloning this whole project please make sure, you have done the following 
 * In terminal: sudo influx -precision rfc3339 (Ubuntu)
 
 
-## 4. How to run the project ?
+## 4. How to run the project
 * Clone the whole InfluxDB_Projekt repository 
 * On your machine navigate into the `InfluxDB_Projekt` folder
 * Type in `python Program.py` in the terminal \
