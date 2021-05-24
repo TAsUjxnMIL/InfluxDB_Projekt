@@ -2,6 +2,8 @@
 
 ![GitHub repo size](https://img.shields.io/github/repo-size/TAsUjxnMIL/InfluxDB_Projekt)
 
+Matrikelnummer: 4169768
+
 This database programming project is about the analysis of time series data.
 The time series data which is used can be found [here](https://ourworldindata.org/coronavirus-source-data) under .csv.
 To run the code in the repository PLEASE use the data within Time_Series_Corona_Data!
